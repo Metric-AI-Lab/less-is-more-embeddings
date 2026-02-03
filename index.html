@@ -21,9 +21,8 @@
 
 <header>
     <h1>Less is More: Adapting Text Embeddings for Low-Resource Languages with Small Scale Noisy Synthetic Data</h1>
-    [cite_start]<div class="authors">Zaruhi Navasardyan, Spartak Bughdaryan, Bagrat Minasyan, Hrant Davtyan [cite: 2]</div>
-    [cite_start]<div class="affiliations">Metric AI Lab [cite: 3]</div>
-    [cite_start]<p>Presented at EACL 2026 [cite: 1]</p>
+    <div class="authors">Zaruhi Navasardyan, Spartak Bughdaryan, Bagrat Minasyan, Hrant Davtyan</div>
+    <div class="affiliations">Metric AI Lab</div>
 </header>
 
 <nav>
@@ -37,28 +36,28 @@
 <section id="abstract">
     <h2>Abstract</h2>
     <div class="abstract-box">
-        [cite_start]<p>Low-resource languages (LRLs) often lack high-quality, large-scale datasets for training effective text embedding models[cite: 6]. [cite_start]We challenge the assumption that effective semantic alignment requires massive datasets or pristine translations[cite: 7]. [cite_start]By fine-tuning a multilingual encoder (mE5) on just <span class="stat-highlight">10,000 noisy synthetic pairs</span>, we achieved an 11-12% average improvement across benchmarks, matching the performance of models trained on 1 million examples[cite: 10].</p>
+        <p>Low-resource languages (LRLs) often lack high-quality, large-scale datasets for training effective text embedding models. We challenge the assumption that effective semantic alignment requires massive datasets or pristine translations. By fine-tuning a multilingual encoder (mE5) on just <span class="stat-highlight">10,000 noisy synthetic pairs</span>, we achieved an 11-12% average improvement across benchmarks, matching the performance of models trained on 1 million examples.</p>
     </div>
 </section>
 
 <section id="introduction">
     <h2>1. Introduction</h2>
-    [cite_start]<p>Text embeddings are critical for Retrieval-Augmented Generation (RAG) and semantic search[cite: 16]. [cite_start]While high-resource languages like English have massive corpora, languages like Armenian (hye) remain underserved[cite: 17]. [cite_start]We demonstrate that semantic alignment for LRLs saturates early and is highly robust to noise[cite: 13].</p>
+    <p>Text embeddings are critical for Retrieval-Augmented Generation (RAG) and semantic search. While high-resource languages like English have massive corpora, languages like Armenian (hye) remain underserved. We demonstrate that semantic alignment for LRLs saturates early and is highly robust to noise.</p>
 </section>
 
 <section id="method">
     <h2>2. Methodology</h2>
     <ul>
-        [cite_start]<li><strong>Data Source:</strong> We sampled 2 million Reddit (title, body) pairs[cite: 51].</li>
-        [cite_start]<li><strong>Translation:</strong> Pairs were translated to Armenian using <em>Gemma-2-27B-it</em>[cite: 53].</li>
-        [cite_start]<li><strong>Noise Profile:</strong> Translations were often imperfect or grammatically incorrect, yet they preserved contextual meaning[cite: 54].</li>
-        [cite_start]<li><strong>Filtering:</strong> We used semantic consistency metrics (Semantic Drift and Translation Drift) to prune the corpus to 1 million high-fidelity samples[cite: 73, 81].</li>
+        <li><strong>Data Source:</strong> We sampled 2 million Reddit (title, body) pairs.</li>
+        <li><strong>Translation:</strong> Pairs were translated to Armenian using <em>Gemma-2-27B-it</em>.</li>
+        <li><strong>Noise Profile:</strong> Translations were often imperfect or grammatically incorrect, yet they preserved contextual meaning.</li>
+        <li><strong>Filtering:</strong> We used semantic consistency metrics (Semantic Drift and Translation Drift) to prune the corpus to 1 million high-fidelity samples.</li>
     </ul>
 </section>
 
 <section id="results">
     <h2>3. Key Results</h2>
-    [cite_start]<p>Scaling data from 10k to 1M examples yielded only marginal gains, suggesting that alignment happens rapidly with minimal data[cite: 136, 138].</p>
+    <p>Scaling data from 10k to 1M examples yielded only marginal gains, suggesting that alignment happens rapidly with minimal data.</p>
     
     <h3>Model Performance Comparison</h3>
     <table>
@@ -75,19 +74,19 @@
                 <td>multilingual-e5-base (Baseline)</td>
                 <td>58.15</td>
                 <td>66.19</td>
-                [cite_start]<td>64.30 [cite: 95]</td>
+                <td>64.30</td>
             </tr>
             <tr>
                 <td><strong>Our Model (10k samples)</strong></td>
                 <td><strong>79.35</strong></td>
                 <td><strong>70.84</strong></td>
-                [cite_start]<td><strong>76.42 [cite: 130]</strong></td>
+                <td><strong>76.42</strong></td>
             </tr>
             <tr>
                 <td>Our Model (1M samples)</td>
                 <td>83.70</td>
                 <td>69.04</td>
-                [cite_start]<td>73.92 [cite: 130]</td>
+                <td>73.92</td>
             </tr>
         </tbody>
     </table>
@@ -95,11 +94,11 @@
 
 <section id="conclusion">
     <h2>4. Conclusion</h2>
-    [cite_start]<p>Our "Less is More" finding suggests that for strong multilingual baselines, the semantic structure is already latent; the challenge is merely surface-level alignment[cite: 173, 174]. [cite_start]This approach democratizes SOTA embedding creation for communities with limited compute and data resources[cite: 175].</p>
+    <p>Our "Less is More" finding suggests that for strong multilingual baselines, the semantic structure is already latent; the challenge is merely surface-level alignment. This approach democratizes SOTA embedding creation for communities with limited compute and data resources.</p>
 </section>
 
 <footer>
-    [cite_start]<p>Full Model, Data, and Benchmark released to the public. [cite: 14]</p>
+    <p>Full Model, Data, and Benchmark released to the public.</p>
     <p>© 2026 Metric AI Lab</p>
 </footer>
 
