@@ -1,106 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Less is More: Adapting Text Embeddings for LRLs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <style>
-        body { max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
-        header { text-align: center; margin-bottom: 40px; }
-        .authors { font-size: 1.1em; opacity: 0.9; }
-        .affiliations { font-style: italic; opacity: 0.7; margin-bottom: 10px; }
-        .abstract-box { border-left: 5px solid #0076ff; padding: 10px 20px; margin: 20px 0; background: rgba(128, 128, 128, 0.05); }
-        table { width: 100%; margin: 20px 0; border-collapse: collapse; }
-        nav { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; border-bottom: 1px solid rgba(128, 128, 128, 0.2); padding-bottom: 20px; }
-        footer { margin-top: 50px; text-align: center; font-size: 0.9em; opacity: 0.6; }
-        .stat-highlight { font-weight: bold; color: #0076ff; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Less is More: Adapting Text Embeddings for Low-Resource Languages with Small Scale Noisy Synthetic Data</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6, .title {
+      font-family: 'Google Sans', sans-serif;
+    }
+    .hero {
+      background-color: #ffffff;
+      padding: 3rem 1.5rem;
+    }
+    .publication-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .publication-authors {
+      margin-top: 1.5rem;
+      font-size: 1.25rem;
+    }
+    .author-block {
+      display: inline-block;
+      margin-right: 15px;
+    }
+    .author-block a {
+      color: #3273dc;
+      text-decoration: none;
+    }
+    .author-block a:hover {
+      text-decoration: underline;
+    }
+    .publication-venue {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #555;
+      margin-top: 15px;
+    }
+    .institution {
+      font-size: 1.1rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+    .publication-links {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .link-block .button.is-dark {
+      background-color: #363636;
+      color: white;
+      border-radius: 20px;
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+    .link-block .button.is-dark:hover {
+      background-color: #2b2b2b;
+    }
+    .icon {
+      margin-right: 5px;
+    }
+    .hf-icon {
+      font-size: 1.3em;
+      line-height: 1;
+      margin-right: 6px;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .content-block {
+      margin-bottom: 3rem;
+    }
+    .abstract-text {
+      font-size: 1.1rem;
+      text-align: justify;
+      line-height: 1.6;
+    }
+    .table-container {
+      margin-top: 2rem;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    th {
+      background-color: #f8f9fa;
+      font-weight: 700;
+      color: #333;
+    }
+    .table-caption {
+      text-align: left;
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+    .bibtex-block {
+      background-color: #f5f5f5;
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      text-align: left;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>Less is More: Adapting Text Embeddings for Low-Resource Languages with Small Scale Noisy Synthetic Data</h1>
-    <div class="authors">Zaruhi Navasardyan, Spartak Bughdaryan, Bagrat Minasyan, Hrant Davtyan</div>
-    <div class="affiliations">Metric AI Lab</div>
-</header>
+  <section class="hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title publication-title">
+            Less is More: Adapting Text Embeddings for Low-Resource Languages with Small Scale Noisy Synthetic Data
+          </h1>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Zaruhi Navasardyan,</span>
+            <span class="author-block">Spartak Bughdaryan,</span>
+            <span class="author-block">Bagrat Minasyan,</span>
+            <span class="author-block">Hrant Davtyan</span>
+          </div>
 
-<nav>
-    <a href="#abstract">Abstract</a>
-    <a href="#introduction">Introduction</a>
-    <a href="#method">Method</a>
-    <a href="#results">Key Results</a>
-    <a href="#conclusion">Conclusion</a>
-</nav>
+          <div class="institution">
+            <span class="author-block">Metric AI Lab</span>
+          </div>
+          
+          <div class="publication-venue">
+            Accepted to LoResLM 2026 (Workshop at EACL 2026)
+          </div>
 
-<section id="abstract">
-    <h2>Abstract</h2>
-    <div class="abstract-box">
-        <p>Low-resource languages (LRLs) often lack high-quality, large-scale datasets for training effective text embedding models. We challenge the assumption that effective semantic alignment requires massive datasets or pristine translations. By fine-tuning a multilingual encoder (mE5) on just <span class="stat-highlight">10,000 noisy synthetic pairs</span>, we achieved an 11-12% average improvement across benchmarks, matching the performance of models trained on 1 million examples.</p>
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="https://arxiv.org/abs/xxxx.xxxxx" class="button is-dark">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Paper</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://github.com/Metric-AI-Lab/less-is-more-embeddings" class="button is-dark">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Code</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://huggingface.co/collections/Metric-AI/armenian-ai" class="button is-dark">
+                <span class="hf-icon">🤗</span>
+                <span>Dataset</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://huggingface.co/collections/Metric-AI/armenian-ai" class="button is-dark">
+                <span class="hf-icon">🤗</span>
+                <span>Model</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://huggingface.co/collections/Metric-AI/armenian-ai" class="button is-dark">
+                <span class="hf-icon">🤗</span>
+                <span>Leaderboard</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="introduction">
-    <h2>1. Introduction</h2>
-    <p>Text embeddings are critical for Retrieval-Augmented Generation (RAG) and semantic search. While high-resource languages like English have massive corpora, languages like Armenian (hye) remain underserved. We demonstrate that semantic alignment for LRLs saturates early and is highly robust to noise.</p>
-</section>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="content-block">
+        <h2 class="section-title">Abstract</h2>
+        <div class="abstract-text">
+          <p>
+            Low-resource languages (LRLs) often lack high-quality, large-scale datasets for training effective text embedding models, hindering their application in tasks like retrieval-augmented generation (RAG) and semantic search. In this work, we challenge the prevailing assumption that effective semantic alignment requires massive datasets or pristine, human-verified translations.
+          </p>
+          <p>
+            Focusing on Armenian (an LRL with a unique script), we introduce a cost-effective adaptation strategy using small scale noisy synthetic data generated by translating English Reddit title-body pairs with open-weights models. We establish a comprehensive evaluation benchmark comprising existing datasets, translated data, and a manually curated dataset.
+          </p>
+          <p>
+            Our experiments reveal a surprising "Less is More" phenomenon: fine-tuning a multilingual encoder (mE5) on just 10,000 noisy synthetic pairs yields 11-12% average improvements across the benchmark with a 20%+ relative improvement in retrieval performance, matching the performance of models trained on 1 million examples. Furthermore, we demonstrate that neither increasing data scale, improving translation quality via state-of-the-art LLMs, nor diversifying data domains yields significant gains over this minimal baseline. We validate the generalizability of these findings on another LRL with a unique script. Our results suggest that semantic alignment for LRLs saturates early and is highly robust to noise, democratizing high-performance embedding creation for resource-constrained communities.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="method">
-    <h2>2. Methodology</h2>
-    <ul>
-        <li><strong>Data Source:</strong> We sampled 2 million Reddit (title, body) pairs.</li>
-        <li><strong>Translation:</strong> Pairs were translated to Armenian using <em>Gemma-2-27B-it</em>.</li>
-        <li><strong>Noise Profile:</strong> Translations were often imperfect or grammatically incorrect, yet they preserved contextual meaning.</li>
-        <li><strong>Filtering:</strong> We used semantic consistency metrics (Semantic Drift and Translation Drift) to prune the corpus to 1 million high-fidelity samples.</li>
-    </ul>
-</section>
 
-<section id="results">
-    <h2>3. Key Results</h2>
-    <p>Scaling data from 10k to 1M examples yielded only marginal gains, suggesting that alignment happens rapidly with minimal data.</p>
-    
-    <h3>Model Performance Comparison</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Model</th>
-                <th>Retrieval</th>
-                <th>STS [hye]</th>
-                <th>Average Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>multilingual-e5-base (Baseline)</td>
-                <td>58.15</td>
-                <td>66.19</td>
-                <td>64.30</td>
-            </tr>
-            <tr>
-                <td><strong>Our Model (10k samples)</strong></td>
-                <td><strong>79.35</strong></td>
-                <td><strong>70.84</strong></td>
-                <td><strong>76.42</strong></td>
-            </tr>
-            <tr>
-                <td>Our Model (1M samples)</td>
-                <td>83.70</td>
-                <td>69.04</td>
-                <td>73.92</td>
-            </tr>
-        </tbody>
-    </table>
-</section>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="content-block">
+        <h2 class="title is-3">Citation</h2>
+        <div class="bibtex-block">
+<pre><code>@inproceedings{navasardyan2026less,
+  title={Less is More: Adapting Text Embeddings for Low-Resource Languages with Small Scale Noisy Synthetic Data},
+  author={Navasardyan, Zaruhi and Bughdaryan, Spartak and Minasyan, Bagrat and Davtyan, Hrant},
+  booktitle={Proceedings of the Workshop on Low-Resource Language Models (LoResLM) at EACL 2026},
+  year={2026}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="conclusion">
-    <h2>4. Conclusion</h2>
-    <p>Our "Less is More" finding suggests that for strong multilingual baselines, the semantic structure is already latent; the challenge is merely surface-level alignment. This approach democratizes SOTA embedding creation for communities with limited compute and data resources.</p>
-</section>
-
-<footer>
-    <p>Full Model, Data, and Benchmark released to the public.</p>
-    <p>© 2026 Metric AI Lab</p>
-</footer>
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          Page template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
